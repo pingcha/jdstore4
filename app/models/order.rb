@@ -23,6 +23,8 @@ class Order < ApplicationRecord
   end
 
   include AASM
+
+  aasm do
     state :order_placed, initial: true
     state :paid
     state :shipping
@@ -49,5 +51,7 @@ class Order < ApplicationRecord
     event :cancel_order do
       transitions from: [:order_placed, :paid], to: :order_cancelled
     end
+
+  end
 
 end
